@@ -10,7 +10,6 @@ jest.mock('path');
 jest.mock('process');
 jest.mock('fs/promises');
 
-
 describe('doStuffByTimeout', () => {
   beforeAll(() => {
     jest.useFakeTimers();
@@ -22,7 +21,7 @@ describe('doStuffByTimeout', () => {
 
   test('should set timeout with provided callback and timeout', () => {
     const spy = jest.spyOn(global, 'setTimeout');
-    const callback = () => console.log("success");
+    const callback = () => console.log('success');
     doStuffByTimeout(callback, 10000);
     expect(spy).toHaveBeenCalledWith(callback, 10000);
   });
@@ -52,7 +51,7 @@ describe('doStuffByInterval', () => {
 
   test('should set interval with provided callback and timeout', () => {
     const spy = jest.spyOn(global, 'setInterval');
-    const callback = () => console.log("success");
+    const callback = () => console.log('success');
 
     doStuffByInterval(callback, 10000);
 
@@ -79,25 +78,25 @@ describe('readFileAsynchronously', () => {
   afterAll(jest.clearAllMocks);
 
   test('should call join with pathToFile', async () => {
-    await readFileAsynchronously("some-path");
+    await readFileAsynchronously('some-path');
 
-    expect(join).toBeCalledWith(expect.anything(), "some-path");
+    expect(join).toBeCalledWith(expect.anything(), 'some-path');
   });
 
   test('should return null if file does not exist', async () => {
-    jest.mocked(existsSync).mockReturnValueOnce(false)
+    jest.mocked(existsSync).mockReturnValueOnce(false);
 
-    const result = await readFileAsynchronously("some-path");
+    const result = await readFileAsynchronously('some-path');
     expect(result).toBeNull();
   });
 
   test('should return file content if file exists', async () => {
-    const fileContent = "content of the file";
+    const fileContent = 'content of the file';
 
     jest.mocked(existsSync).mockReturnValueOnce(true);
     jest.mocked(readFile).mockResolvedValueOnce(fileContent);
 
-    const result = await readFileAsynchronously("some-path");
+    const result = await readFileAsynchronously('some-path');
 
     expect(result).toEqual(fileContent);
   });

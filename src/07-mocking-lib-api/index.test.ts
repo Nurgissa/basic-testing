@@ -10,7 +10,7 @@ jest.mock('lodash', () => ({
 describe('throttledGetDataFromApi', () => {
   afterEach(() => {
     jest.resetAllMocks();
-    jest.clearAllMocks()
+    jest.clearAllMocks();
   });
 
   test('should create instance with provided base url', async () => {
@@ -34,7 +34,7 @@ describe('throttledGetDataFromApi', () => {
 
     await throttledGetDataFromApi('/posts');
 
-    expect(mockAxiosInstance.get).toHaveBeenCalledWith("/posts");
+    expect(mockAxiosInstance.get).toHaveBeenCalledWith('/posts');
   });
 
   test('should return response data', async () => {
